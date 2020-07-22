@@ -4,21 +4,30 @@
 using namespace std;
 
 int main() {
+	//정수형 n, s에 값 입력
 	int n, s;
 	cin >> n >> s;
+	//배열과 비슷한 역할
 	vector<int> seq(n);
 
+	//i=0에서 n 미만까지 증가하며 seq 공간에 값 입력 
 	for (int i = 0; i < n; ++i)
 		cin >> seq[i];
 
+	//seq 처음부터 끝까지 정렬
 	sort(seq.begin(), seq.end());
 
 	int l = 0, r = n - 1, ans = 0;
 
+	//1이 r 이하인 동안
 	while (l <= r) {
+		//seq[l]값과 seq[r]값 더해서 sum에 저장
 		int sum = seq[l] + seq[r];
+		//만약 sum이 s보다 크다면 r 감소
 		if (sum > s) --r;
+		//만약 sum이 s보다 작다면 l 증가
 		else if (sum < s) ++l;
+		//둘 다 아니라면 l 증가, r 감소, ans 증가
 		else {
 			++l; --r; ++ans;
 		}
